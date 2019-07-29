@@ -8,9 +8,10 @@
         android:id="@+id/pink_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        fab:fab_icon="@drawable/ic_fab_star"
-        fab:fab_colorNormal="@color/pink"
-        fab:fab_colorPressed="@color/pink_pressed"
+        fab:fab_icon="@drawable/icon_float_publish_pai"
+        fab:fab_colorNormal="@color/white"
+        fab:fab_colorPressed="@color/white"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"/>
@@ -48,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         fab:fab_plusIconColor="@color/half_black"
         fab:fab_colorNormal="@color/white"
         fab:fab_colorPressed="@color/white_pressed"
@@ -100,7 +102,7 @@
         fab:fab_addButtonColorNormal="@color/white"
         fab:fab_addButtonColorPressed="@color/white_pressed"
         fab:fab_addButtonPlusIconColor="@color/half_black"
-        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_expandDirection="left"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginEnd="16dp">
@@ -109,6 +111,8 @@
             android:id="@+id/action_a"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            fab:fab_icon="@drawable/icon_float_publish_pai"
+            fab:fab_icon_fill="true"
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Action A"
             fab:fab_colorPressed="@color/white_pressed"/>
@@ -118,6 +122,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/white"
+            fab:fab_icon_fill="true"
+            fab:fab_icon="@drawable/icon_float_publish_forum"
+            fab:fab_title="Action with a very long name that won\'t fit on the screen"
+            fab:fab_colorPressed="@color/white_pressed"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_icon_fill="true"
+            fab:fab_icon="@drawable/icon_float_publish_video"
             fab:fab_title="Action with a very long name that won\'t fit on the screen"
             fab:fab_colorPressed="@color/white_pressed"/>
 
