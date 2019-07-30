@@ -4,6 +4,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
@@ -46,6 +47,13 @@ public class MainActivity extends Activity {
 
         final FloatingActionsMenu menuMultipleActions = (FloatingActionsMenu) findViewById(R.id.multiple_actions);
 //        menuMultipleActions.addButton(actionC);
+        int colorAdd = Color.parseColor("#16B2EC");
+        menuMultipleActions.setAddButtonColorNormal(colorAdd);
+        float[] hsv = new float[3];
+        Color.colorToHSV(colorAdd, hsv);
+        hsv[2] = hsv[2] * 0.9f;
+        int pressColor = Color.HSVToColor(hsv);
+        menuMultipleActions.setAddButtonColorPressed(pressColor);
 
         final FloatingActionButton removeAction = (FloatingActionButton) findViewById(R.id.button_remove);
         removeAction.setOnClickListener(new OnClickListener() {
