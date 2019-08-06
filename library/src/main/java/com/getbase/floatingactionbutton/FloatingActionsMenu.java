@@ -192,14 +192,14 @@ public class FloatingActionsMenu extends ViewGroup {
 
     public void setAddButtonColorNormal(int color) {
         mAddButtonColorNormal = color;
-        if (mAddButton!=null){
+        if (mAddButton != null) {
             mAddButton.updateBackground();
         }
     }
 
     public void setAddButtonColorPressed(int color) {
         mAddButtonColorPressed = color;
-        if (mAddButton!=null){
+        if (mAddButton != null) {
             mAddButton.updateBackground();
         }
     }
@@ -211,6 +211,10 @@ public class FloatingActionsMenu extends ViewGroup {
         if (mLabelsStyle != 0) {
             createLabels();
         }
+    }
+
+    public void setButtonSpacing(int spacing) {
+        mButtonSpacing = spacing;
     }
 
     public void removeButton(FloatingActionButton button) {
