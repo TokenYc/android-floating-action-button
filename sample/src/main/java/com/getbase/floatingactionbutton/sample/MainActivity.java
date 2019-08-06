@@ -10,6 +10,7 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -55,6 +56,7 @@ public class MainActivity extends Activity {
         int pressColor = Color.HSVToColor(hsv);
         menuMultipleActions.setAddButtonColorPressed(pressColor);
 
+
         final FloatingActionButton removeAction = (FloatingActionButton) findViewById(R.id.button_remove);
         removeAction.setOnClickListener(new OnClickListener() {
             @Override
@@ -67,13 +69,12 @@ public class MainActivity extends Activity {
         drawable.getPaint().setColor(getResources().getColor(R.color.white));
         ((FloatingActionButton) findViewById(R.id.setter_drawable)).setIconDrawable(drawable);
 
-        final FloatingActionButton actionA = (FloatingActionButton) findViewById(R.id.action_a);
-        actionA.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                actionA.setTitle("Action A clicked");
-            }
-        });
+
+        FloatingActionButton actionButton = new FloatingActionButton(this);
+        actionButton.setBackground(getDrawable(R.drawable.icon_float_publish_pai));
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+        actionButton.setCircleSize(screenWidth/8);
+        menuMultipleActions.addButton(actionButton);
 
         final FloatingActionButton actionButtonB = (FloatingActionButton) findViewById(R.id.action_b);
 

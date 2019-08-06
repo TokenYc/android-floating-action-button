@@ -116,6 +116,12 @@ public class FloatingActionButton extends ImageButton {
         }
     }
 
+    public void setCircleSize(int circleSize) {
+        this.mCircleSize = circleSize;
+        updateDrawableSize();
+    }
+
+
     public void setIconFill(boolean fill) {
         this.mIconFill = fill;
         updateBackground();
@@ -125,6 +131,7 @@ public class FloatingActionButton extends ImageButton {
     public int getSize() {
         return mSize;
     }
+
 
     public void setIcon(@DrawableRes int icon) {
         if (mIcon != icon) {
