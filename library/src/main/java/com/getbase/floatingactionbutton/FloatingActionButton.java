@@ -34,7 +34,9 @@ import android.widget.TextView;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public class FloatingActionButton extends ImageButton {
+import pl.droidsonroids.gif.GifImageView;
+
+public class FloatingActionButton extends GifImageView {
 
     public static final int SIZE_NORMAL = 0;
     public static final int SIZE_MINI = 1;
