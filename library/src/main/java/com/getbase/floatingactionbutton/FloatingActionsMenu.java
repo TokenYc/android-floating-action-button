@@ -595,6 +595,17 @@ public class FloatingActionsMenu extends ViewGroup {
         return mExpanded;
     }
 
+    /**
+     * 控制展开方向
+     *
+     * @param direction
+     */
+    public void setDirection(int direction) {
+        if (direction > 0 && direction < 5) {
+            mExpandDirection = direction;
+        }
+    }
+
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
