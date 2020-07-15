@@ -473,4 +473,14 @@ public class FloatingActionButton extends GifImageView {
 
         super.setVisibility(visibility);
     }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        try {
+            //为了捕获Canvas: trying to use a recycled bitmap android.graphics.Bitmap异常
+            super.onDraw(canvas);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
