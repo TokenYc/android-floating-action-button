@@ -28,7 +28,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.lang.annotation.Retention;
@@ -483,4 +482,22 @@ public class FloatingActionButton extends GifImageView {
             e.printStackTrace();
         }
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        recycleBitmap(getDrawable());
+        recycleBitmap(getIconDrawable());
+    }
+
+    private void recycleBitmap(Drawable drawable) {
+        Bitmap bitmap = null;
+        if (drawable instanceof BitmapDrawable) {
+            bitmap = ((BitmapDrawable) drawable).getBitmap();
+        }
+        if (bitmap != null && !bitmap.isRecycled()) {
+            bitmap.recycle();
+        }
+    }
+
 }
