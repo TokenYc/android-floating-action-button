@@ -473,31 +473,32 @@ public class FloatingActionButton extends GifImageView {
         super.setVisibility(visibility);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        try {
-            //为了捕获Canvas: trying to use a recycled bitmap android.graphics.Bitmap异常
-            super.onDraw(canvas);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    //不对bitmap处理，防止出问题
+//    @Override
+//    protected void onDraw(Canvas canvas) {
+//        try {
+//            //为了捕获Canvas: trying to use a recycled bitmap android.graphics.Bitmap异常
+//            super.onDraw(canvas);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        recycleBitmap(getDrawable());
-        recycleBitmap(getIconDrawable());
-    }
-
-    private void recycleBitmap(Drawable drawable) {
-        Bitmap bitmap = null;
-        if (drawable instanceof BitmapDrawable) {
-            bitmap = ((BitmapDrawable) drawable).getBitmap();
-        }
-        if (bitmap != null && !bitmap.isRecycled()) {
-            bitmap.recycle();
-        }
-    }
+//    @Override
+//    protected void onDetachedFromWindow() {
+//        super.onDetachedFromWindow();
+//        recycleBitmap(getDrawable());
+//        recycleBitmap(getIconDrawable());
+//    }
+//
+//    private void recycleBitmap(Drawable drawable) {
+//        Bitmap bitmap = null;
+//        if (drawable instanceof BitmapDrawable) {
+//            bitmap = ((BitmapDrawable) drawable).getBitmap();
+//        }
+//        if (bitmap != null && !bitmap.isRecycled()) {
+//            bitmap.recycle();
+//        }
+//    }
 
 }
