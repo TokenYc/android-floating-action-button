@@ -30,12 +30,12 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import pl.droidsonroids.gif.GifImageView;
-
-public class FloatingActionButton extends GifImageView {
+public class  FloatingActionButton extends SimpleDraweeView {
 
     public static final int SIZE_NORMAL = 0;
     public static final int SIZE_MINI = 1;
