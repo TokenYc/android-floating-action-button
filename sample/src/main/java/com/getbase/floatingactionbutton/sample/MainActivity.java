@@ -92,11 +92,11 @@ public class MainActivity extends Activity {
 
         FloatingActionsMenu rightLabels = (FloatingActionsMenu) findViewById(R.id.right_labels);
         FloatingActionButton addedOnce = new FloatingActionButton(this);
-        addedOnce.setTitle("Added once");
+        addedOnce.setTitle("once");
         rightLabels.addButton(addedOnce);
 
         FloatingActionButton addedTwice = new FloatingActionButton(this);
-        addedTwice.setTitle("Added twice");
+        addedTwice.setTitle("twice");
         rightLabels.addButton(addedTwice);
         rightLabels.removeButton(addedTwice);
         rightLabels.addButton(addedTwice);
