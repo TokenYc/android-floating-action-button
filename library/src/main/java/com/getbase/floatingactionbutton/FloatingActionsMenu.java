@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -16,6 +17,8 @@ import android.os.Parcelable;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 
+import android.text.InputFilter;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
 import android.view.TouchDelegate;
@@ -232,6 +235,7 @@ public class FloatingActionsMenu extends ViewGroup {
         return getResources().getColor(id);
     }
 
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         measureChildren(widthMeasureSpec, heightMeasureSpec);
@@ -269,6 +273,10 @@ public class FloatingActionsMenu extends ViewGroup {
             if (label != null) {
                 maxLabelWidth = Math.max(maxLabelWidth, label.getMeasuredWidth());
                 maxLabelHeight = Math.max(maxLabelHeight, label.getMeasuredHeight());
+                //此处是为了化龙巷聚合悬浮按钮下设置文字的需求
+                label.setEllipsize(TextUtils.TruncateAt.END);
+                label.setSingleLine(true);
+                label.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
             }
 //            }
         }
@@ -396,7 +404,9 @@ public class FloatingActionsMenu extends ViewGroup {
                         : mMaxButtonHeight / 2;
                 int addButtonX = expandLeft ? r - l - mAddButton.getMeasuredWidth() : 0;
                 // Ensure mAddButton is centered on the line where the buttons should be
-                int addButtonTop = b - t - mMaxButtonHeight + (mMaxButtonHeight - mAddButton.getMeasuredHeight()) / 2;
+                int addButtonTop = mLabelsPosition == LABELS_ON_TOP_SIDE ?
+                        b - t - mMaxButtonHeight + (mMaxButtonHeight - mAddButton.getMeasuredHeight()) / 2
+                        : (mMaxButtonHeight - mAddButton.getMeasuredHeight()) / 2;
                 mAddButton.layout(addButtonX, addButtonTop, addButtonX + mAddButton.getMeasuredWidth(), addButtonTop + mAddButton.getMeasuredHeight());
 
 
@@ -431,17 +441,18 @@ public class FloatingActionsMenu extends ViewGroup {
                                 ? buttonVerticalCenter - labelsYOffset
                                 : buttonVerticalCenter + labelsYOffset;
                         int labelYAwayFromButton = mLabelsPosition == LABELS_ON_TOP_SIDE
-                                ? labelsYNearButton + label.getMeasuredHeight()
-                                : labelsYNearButton - label.getMeasuredHeight();
+                                ? labelsYNearButton - label.getMeasuredHeight()
+                                : labelsYNearButton + label.getMeasuredHeight();
 
                         int labelTop = mLabelsPosition == LABELS_ON_TOP_SIDE
-                                ? buttonVerticalCenter - label.getMeasuredHeight() / 2
-                                : labelYAwayFromButton;
+                                ? labelYAwayFromButton
+                                : labelsYNearButton;
 
                         int labelBottom = mLabelsPosition == LABELS_ON_TOP_SIDE
-                                ? buttonVerticalCenter + label.getMeasuredHeight() / 2
-                                : labelsYNearButton;
-                        int labelLeft = childX;
+                                ? labelsYNearButton
+                                : labelYAwayFromButton;
+//                        int labelTop = childY - mLabelsVerticalOffset + (child.getMeasuredHeight() - label.getMeasuredHeight()) / 2;
+                        int labelLeft = childX + (child.getMeasuredWidth() - label.getMeasuredWidth()) / 2;
                         int labelRight = labelLeft + label.getMeasuredWidth();
                         label.layout(labelLeft, labelTop, labelRight, labelBottom);
 
