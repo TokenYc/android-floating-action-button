@@ -273,10 +273,10 @@ public class FloatingActionsMenu extends ViewGroup {
             if (label != null) {
                 maxLabelWidth = Math.max(maxLabelWidth, label.getMeasuredWidth());
                 maxLabelHeight = Math.max(maxLabelHeight, label.getMeasuredHeight());
-                //此处是为了化龙巷聚合悬浮按钮下设置文字的需求
-                label.setEllipsize(TextUtils.TruncateAt.END);
-                label.setSingleLine(true);
-                label.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
+//                //此处是为了化龙巷聚合悬浮按钮下设置文字的需求
+//                label.setEllipsize(TextUtils.TruncateAt.END);
+//                label.setSingleLine(true);
+//                label.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
             }
 //            }
         }
