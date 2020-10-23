@@ -5,8 +5,11 @@ import android.graphics.Color;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.getbase.floatingactionbutton.FloatingActionButton;
@@ -96,9 +99,18 @@ public class MainActivity extends Activity {
         rightLabels.addButton(addedOnce);
 
         FloatingActionButton addedTwice = new FloatingActionButton(this);
-        addedTwice.setTitle("twice");
+        addedTwice.setTitle("拍相册");
         rightLabels.addButton(addedTwice);
         rightLabels.removeButton(addedTwice);
         rightLabels.addButton(addedTwice);
+        TextView textView = addedTwice.getLabelView();
+        if (textView != null) {
+            textView.setGravity(Gravity.CENTER);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            textView.setSingleLine(true);
+            textView.setMaxLines(1);
+//                    textView.setEms(10);
+//                    textView.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+        }
     }
 }

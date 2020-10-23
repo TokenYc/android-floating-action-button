@@ -22,11 +22,13 @@ import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
+
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
+
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -35,7 +37,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public class  FloatingActionButton extends SimpleDraweeView {
+public class FloatingActionButton extends SimpleDraweeView {
 
     public static final int SIZE_NORMAL = 0;
     public static final int SIZE_MINI = 1;
@@ -231,7 +233,7 @@ public class  FloatingActionButton extends SimpleDraweeView {
         }
     }
 
-    TextView getLabelView() {
+    public TextView getLabelView() {
         return (TextView) getTag(R.id.fab_label);
     }
 

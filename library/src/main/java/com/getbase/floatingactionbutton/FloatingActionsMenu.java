@@ -21,6 +21,7 @@ import android.text.InputFilter;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
@@ -601,6 +602,10 @@ public class FloatingActionsMenu extends ViewGroup {
             TextView label = new TextView(context);
             label.setTextAppearance(getContext(), mLabelsStyle);
             label.setText(button.getTitle());
+            label.setGravity(Gravity.LEFT);
+            label.setPadding(8, 2, 8, 2);
+//            ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+//            label.setLayoutParams(params);
             addView(label);
 
             button.setTag(R.id.fab_label, label);
