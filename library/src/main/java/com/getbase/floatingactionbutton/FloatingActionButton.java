@@ -22,15 +22,14 @@ import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
+import android.util.AttributeSet;
+import android.widget.EditText;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.DimenRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
-
-import android.util.AttributeSet;
-import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -227,14 +226,14 @@ public class FloatingActionButton extends SimpleDraweeView {
 
     public void setTitle(String title) {
         mTitle = title;
-        TextView label = getLabelView();
+        EditText label = getLabelView();
         if (label != null) {
             label.setText(title);
         }
     }
 
-    public TextView getLabelView() {
-        return (TextView) getTag(R.id.fab_label);
+    public EditText getLabelView() {
+        return (EditText) getTag(R.id.fab_label);
     }
 
     public String getTitle() {
@@ -467,40 +466,11 @@ public class FloatingActionButton extends SimpleDraweeView {
 
     @Override
     public void setVisibility(int visibility) {
-        TextView label = getLabelView();
+        EditText label = getLabelView();
         if (label != null) {
             label.setVisibility(visibility);
         }
 
         super.setVisibility(visibility);
     }
-
-    //不对bitmap处理，防止出问题
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        try {
-//            //为了捕获Canvas: trying to use a recycled bitmap android.graphics.Bitmap异常
-//            super.onDraw(canvas);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-
-//    @Override
-//    protected void onDetachedFromWindow() {
-//        super.onDetachedFromWindow();
-//        recycleBitmap(getDrawable());
-//        recycleBitmap(getIconDrawable());
-//    }
-//
-//    private void recycleBitmap(Drawable drawable) {
-//        Bitmap bitmap = null;
-//        if (drawable instanceof BitmapDrawable) {
-//            bitmap = ((BitmapDrawable) drawable).getBitmap();
-//        }
-//        if (bitmap != null && !bitmap.isRecycled()) {
-//            bitmap.recycle();
-//        }
-//    }
-
 }
