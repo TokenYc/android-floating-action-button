@@ -252,7 +252,7 @@ public class FloatingActionButton extends SimpleDraweeView {
 
         LayerDrawable layerDrawable = new LayerDrawable(
                 new Drawable[]{
-                        getResources().getDrawable(mSize == SIZE_NORMAL ? R.drawable.fab_bg_normal : R.drawable.fab_bg_mini),
+                        getResources().getDrawable(mSize == SIZE_NORMAL ? R.drawable.fab_bg_average : R.drawable.fab_bg_mini),
                         createFillDrawable(strokeWidth),
                         createOuterStrokeDrawable(strokeWidth),
                         getIconDrawable()
@@ -261,20 +261,21 @@ public class FloatingActionButton extends SimpleDraweeView {
         int iconOffset = (int) (mCircleSize - getDimension(R.dimen.fab_icon_size)) / 2;
 
         int circleInsetHorizontal = (int) (mShadowRadius);
-        int circleInsetTop = (int) (mShadowRadius - mShadowOffset);
-        int circleInsetBottom = (int) (mShadowRadius + mShadowOffset);
+        int circleInsetTop = (int) (mShadowRadius);
+        int circleInsetBottom = (int) (mShadowRadius);
 
+        int circleOffset = dip2px(getContext(), 2);
         layerDrawable.setLayerInset(1,
-                circleInsetHorizontal,
-                circleInsetTop,
-                circleInsetHorizontal,
-                circleInsetBottom);
+                circleInsetHorizontal - circleOffset,
+                circleInsetTop - circleOffset,
+                circleInsetHorizontal - circleOffset,
+                circleInsetBottom - circleOffset);
 
         layerDrawable.setLayerInset(2,
-                (int) (circleInsetHorizontal - halfStrokeWidth),
-                (int) (circleInsetTop - halfStrokeWidth),
-                (int) (circleInsetHorizontal - halfStrokeWidth),
-                (int) (circleInsetBottom - halfStrokeWidth));
+                (int) (circleInsetHorizontal - circleOffset - halfStrokeWidth),
+                (int) (circleInsetTop - circleOffset - halfStrokeWidth),
+                (int) (circleInsetHorizontal - circleOffset - halfStrokeWidth),
+                (int) (circleInsetBottom - circleOffset - halfStrokeWidth));
 
         if (mIconFill) {
             layerDrawable.setLayerInset(3,
@@ -354,6 +355,11 @@ public class FloatingActionButton extends SimpleDraweeView {
         drawable.setLayerInset(1, halfStrokeWidth, halfStrokeWidth, halfStrokeWidth, halfStrokeWidth);
 
         return drawable;
+    }
+
+    private int dip2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
     }
 
     private static class TranslucentLayerDrawable extends LayerDrawable {
